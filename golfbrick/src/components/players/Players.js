@@ -2,25 +2,27 @@ import React from "react";
 import "./Players.css";
 import "./Player.css";
 import Player from "./Player";
-import { Button } from "@mui/material";
-import GolfCourseIcon from "@mui/icons-material/GolfCourse";
+import Search from "./Search";
+
 
 const Players = (props) => {
   const removedPlayerIdHandler = (removedId) => {
     props.onDeletedPlayerChange(removedId); //passing up state
   }; //need to rerender the map function below
 
-  const playerChangeHandler = (playerChange, playerId) => {
-    props.onPlayerDataChange(playerChange, playerId); //passing player name up to app.js
+  const playerChangeHandler = (player, playerId) => {
+    props.onPlayerDataChange(player, playerId);
+     //passing player name up to app.js
   };
 
-  const postcodeChangeHandler = (postcodeChange, playerId) => {
-    props.onPostcodeDataChange(postcodeChange, playerId); //passing player name up to app.js
+  const postcodeChangeHandler = (postcode, playerId) => {
+    props.onPostcodeDataChange(postcode, playerId);
+    //passing player name up to app.js
   };
 
-  const submittedFormHandler = () => {
-      console.log(props.players);
-  };
+  const searchClickHandler = (status) => {
+    props.onSearchStatusChange(status);
+  }
 
   return (
     <div className="players-section">
@@ -38,15 +40,11 @@ const Players = (props) => {
           );
         })}
       </ul>
-      <Button
-        className="search-button"
-        size="large"
-        variant="outlined"
-        endIcon={<GolfCourseIcon />}
-        onClick={submittedFormHandler}
-      >
-        Search
-      </Button>
+      <Search 
+        players={props.addedPlayer}
+        onSearchClick={searchClickHandler}
+      />
+      
     </div>
   );
 };
