@@ -1,10 +1,11 @@
 import { useState } from "react";
 import "./App.css";
-import Nav from "./components/header/Nav";
+import Header from "./components/header/Header.js";
 import AddPlayer from "./components/players/AddPlayer";
 import Players from "./components/players/Players";
 import WrappedMap from "./components/outputs/Map";
 import OutputOptions from "./components/outputs/OutputOptions";
+import { margin, positions } from "@mui/system";
 
 
 
@@ -74,7 +75,7 @@ const App = () => {
   
   return (
     <div className="App">
-      <Nav />
+      <Header />
       <AddPlayer onPlayerStatusChange={playerStatusChangeHandler} />
       <Players
         players={addedPlayer}
@@ -84,8 +85,9 @@ const App = () => {
         onSearchStatusChange={searchStatusChangeHandler}
       />
       <OutputOptions />
-      <div style={{width: '75vw', height: '75vh'}}>
-        <WrappedMap //found in outputs/Map file
+      <div style={{width: '75vw', height: '50vh'}}>
+        <WrappedMap
+ //found in outputs/Map file
           googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&`}//key=${process.env.REACT_APP_GOOGLE_MAP}`}
           loadingElement={<div style={{height: '100%'}}/>}
           containerElement={<div style={{height: '100%'}}/>}
